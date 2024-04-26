@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="ONLINE VOTING SYSTEM (2).png" >
+  <title>officers-directory</title>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --bg: #fef5b9;
+    --box: #fced97;
+    --light: #fffbaf;
+    --dark: #825a48;
+    --body: #251418;
+    --alt: #918d61;
+}
+nav {
+                width: 100%;
+                border-top: 2px solid;
+                margin-bottom: 20px;
+                border-bottom: 2px solid;
+                text-align: center;
+                background: var(--light);
+                position: sticky;
+                top: 0;
+                z-index: 9;
+            }
+
+            nav::before {
+                content: "";
+                box-shadow: 5px 5px 3px inset rgba(255, 255, 255, 0.65),
+                    5px 10px 10px 5px inset var(--light), -6px -6px 1px inset var(--dark),
+                    3px 3px 0 rgba(0, 0, 0, 0.1), 5px 5px 0 rgba(0, 0, 0, 0.1),
+                    7px 7px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 0;
+                left: -20px;
+                width: calc(100% + 40px);
+                height: 100%;
+                z-index: -1;
+                pointer-events: none;
+            }
+
+            .nav-wrap {
+                display: flex;
+                width: calc(100% - 20px);
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            nav a {
+                padding: 10px;
+                flex-grow: 1;
+                color: inherit;
+                text-transform: uppercase;
+                font-weight: bold;
+                text-decoration: none;
+                border-right: 2px solid;
+                transition: all 0.15s steps(2);
+            }
+
+            nav a:first-of-type {
+                border-left: 2px solid;
+            }
+
+            nav a:focus,
+            nav a:hover {
+                background: var(--light);
+                box-shadow: -2px -2px 2px 2px inset rgba(255, 255, 255, 0.5),
+                    2px 2px 1px 2px inset var(--dark);
+            }
+
+            nav a:focus {
+                filter: brightness(0.9);
+            }
+body {
+                margin: 0;
+                padding: 0 0 20px 0;
+                position: relative;
+                background: var(--bg);
+                color: var(--body);
+                width: 100%;
+                min-height: 100vh;
+                font-family: 'Sometype Mono', monospace;
+                background-image: url("https://assets.codepen.io/5896374/seamless-yellow-carpet.jpg");
+                overflow-x: hidden;
+                transition: all 0.3s steps(3);
+            }
+
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: black;
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: inherit;
+            }
+
+            body.toggled::before {
+                opacity: 0.5;
+                mix-blend-mode: color-burn;
+            }
+    /* Style for the table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: var(--dark);
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+        color: wheat;
+      background-color: var(--body);
+    }
+
+    /* Style for the container */
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .footer {
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  background: var(--dark);
+  border-radius: 20px;
+}
+footer {
+      background-color: var(--body);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+
+    /* Style for grid layout */
+    .link-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    .link-item {
+      background-color: var(--body);
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+
+  </style>
+   <nav>
+    <div class="nav-wrap">
+      <img src="ONLINE VOTING SYSTEM (2).png" alt="Icon" width="100" height="40">
+        <a href="home.html" target="_blank">Home</a>
+        <a href="about us.html" target="_blank">About Us</a>
+        <a href="services.html" target="_blank">Services</a>
+        <a href="updates.html" target="_blank">Updates</a>
+
+    </div>
+</nav>
+</head>
+<body>
+  <div class="container">
+    <h1>Chief Election Commissioner and Election Commissioner</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Office No.</th>
+        <th>Office Fax</th>
+        <th>P.S.O.</th>
+        <th>P.P.S.</th>
+        <th>P.S.</th>
+        <th>PA</th>
+        <th>Sr. P.P.S.</th>
+      </tr>
+      <tr>
+        <td>Shri Rajiv Kumar</td>
+        <td>cec[at]eci[dot]gov[dot]in</td>
+        <td>23052132, 23052134</td>
+        <td>23052249</td>
+        <td>Mr. Sanjay Adlakha (302)</td>
+        <td>Mr. Chandramouli (301)</td>
+        <td>Mr. Mahesh (303)</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Shri Gyanesh Kumar</td>
+        <td>ecgk[at]eci[dot]gov[dot]in</td>
+        <td>01123052323, 23052424</td>
+        <td></td>
+        <td></td>
+        <td>Mr. Sarabjit Singh (201)</td>
+        <td>Kavita Arora (216)</td>
+        <td>Mr. Prince Rai (319)</td>
+        <td>Mr. Aman Gupta (216)</td>
+      </tr>
+      <tr>
+        <td>Dr. Sukhbir Singh Sandhu</td>
+        <td>ecsss[at]eci[dot]gov[dot]in</td>
+        <td>23052137, 23052138</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Mr. Abhishek Kumar Anand (305)</td>
+        <td>Mr. Prateek Adlakha (428)</td>
+        <td>Mr. Shubham Rai (362)</td>
+      </tr>
+    </table>
+  </div>
+  <footer>
+   
+    <div>
+      <!-- Address -->
+      8th kilometer, Milestone Delhi, Meerut Rd, Jalalabad 0069 Morta, Ghaziabad, Uttar Pradesh 201003
+    </div>
+    <div>
+      <!-- Quick Links -->
+      <ul class="link-list">
+        <li class="link-item"><a href="about us.html">About ECI</a></li>
+        <li class="link-item"><a href="officers-directory.html">Officers Directory</a></li>
+        <li class="link-item"><a href="contect us.html">Contact Us</a></li>
+        <li class="link-item"><a href="public-grievance.html">Public Grievance</a></li>
+        <li class="link-item"><a href="RTI Onlin.html">RTI Online</a></li>
+        <li class="link-item"><a href="eoffice.html">eOffice</a></li>
+        <li class="link-item"><a href="Apply for Voter Card.html">Apply for Voter Card</a></li>
+        <li class="link-item"><a href="sveep.html">SVEEP</a></li>
+        <li class="link-item"><a href="service voter portal.html">Service Voter Portal</a></li>
+       
+        <li class="link-item"><a href="Political Parties.html">Political Parties</a></li>
+      </ul>
+    </div>
+    <div>
+      <!-- Copyright or other legal information -->
+      &copy; 2024 Election Commission of India. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
