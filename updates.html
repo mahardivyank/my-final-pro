@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="ONLINE VOTING SYSTEM (2).png" >
+  <title>Updates</title>
+  <style>
+    /* CSS for styling */
+    @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --bg: #fef5b9;
+    --box: #fced97;
+    --light: #fffbaf;
+    --dark: #825a48;
+    --body: #251418;
+    --alt: #918d61;
+}
+    nav {
+                width: 100%;
+                border-top: 2px solid;
+                margin-bottom: 20px;
+                border-bottom: 2px solid;
+                text-align: center;
+                background: var(--light);
+                position: sticky;
+                top: 0;
+                z-index: 9;
+            }
+
+            nav::before {
+                content: "";
+                box-shadow: 5px 5px 3px inset rgba(255, 255, 255, 0.65),
+                    5px 10px 10px 5px inset var(--light), -6px -6px 1px inset var(--dark),
+                    3px 3px 0 rgba(0, 0, 0, 0.1), 5px 5px 0 rgba(0, 0, 0, 0.1),
+                    7px 7px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 0;
+                left: -20px;
+                width: calc(100% + 40px);
+                height: 100%;
+                z-index: -1;
+                pointer-events: none;
+            }
+
+            .nav-wrap {
+                display: flex;
+                width: calc(100% - 20px);
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            nav a {
+                padding: 10px;
+                flex-grow: 1;
+                color: inherit;
+                text-transform: uppercase;
+                font-weight: bold;
+                text-decoration: none;
+                border-right: 2px solid;
+                transition: all 0.15s steps(2);
+            }
+
+            nav a:first-of-type {
+                border-left: 2px solid;
+            }
+
+            nav a:focus,
+            nav a:hover {
+                background: var(--light);
+                box-shadow: -2px -2px 2px 2px inset rgba(255, 255, 255, 0.5),
+                    2px 2px 1px 2px inset var(--dark);
+            }
+
+            nav a:focus {
+                filter: brightness(0.9);
+            }
+
+            #searchBtn {
+    position: fixed;
+    top: 60px; /* Adjust the value to position the button lower */
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #030227; /* Blue color, you can change it */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#searchBtn:hover {
+    background-color: #030227; /* Darker shade of blue on hover */
+}
+            .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fef5b9;
+    background-color: var(--body);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.popup-content button[type="submit"] {
+    background-color: var(--dark); /* Coral color, you can change it */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-content button[type="submit"]:hover {
+    background-color: var(--dark); /* Darker shade of coral on hover */
+}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fef5b9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      margin-top: 70px;
+      padding: 20px;
+      background: linear-gradient(160deg,#825a48 35%, #825a48 40%,  #825a48 60%, #825a48 65%);
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .link-list {
+      padding: 10px 0;
+    }
+
+    .link-item {
+      margin-bottom: 10px;
+    }
+
+    .link-item a {
+      display: block;
+      padding: 10px;
+      border: 1px solid #e4079a;
+      border-radius: 30px;
+      background: rgb(211, 190, 190);
+      color: #080808;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .link-item a:hover {
+      background-color: #072e2e;
+    }
+  </style>
+  <nav>
+    <div class="nav-wrap">
+      <img src="ONLINE VOTING SYSTEM (2).png" alt="Icon" width="100" height="40">
+        <a href="home.html" target="_blank">Home</a>
+        <a href="about us.html" target="_blank">About Us</a>
+        <a href="services.html" target="_blank">Services</a>
+        <a href="updates.html" target="_blank">Updates</a>
+
+    </div>
+</nav>
+<button id="searchBtn">Search</button>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Fill in Information</h2>
+            <form id="infoForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+  </div>
+</head>
+<body>
+  <!-- HTML structure -->
+  <div class="container">
+    <h1 style="color: #050505; text-align: center;">Updates from ECI</h1>
+    <div class="link-list">
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/Iy4WJ2RxE9.pdf">India set to celebrate world’s biggest festival of democracy: voting for General Elections 2024 commences tomorrow</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/RvxuYCpAiy.pdf">Election Commission’s Notification under Section 30 and 56 of the Representation of the People Act, 1951 for Phase 4 of General Election to the House of the People, 2024.</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/jsUgxQKA7r.pdf">Commission's Show Cause Notice to Shri K. Chandrasekhar Rao, President, Bharat Rashtra Samithi regarding violation of Model Code of Conduct</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/YsMPzLA7cm.pdf">Commission's Order to Shri Randeep Singh Surjewala, Member of Parliament, Indian National Congress regarding violation of Model Code of Conduct</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/ogvZnwVrMH.pdf">With General Elections 2024 underway, ECI is on track for the highest ever seizures of inducements recorded in the 75 year history of Lok Sabha elections in the country</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/jC0DBIDjnR.pdf">102 PCs in 21 States/UTs and 92 Assembly Constituencies in Arunachal & Sikkim are all set for polling on 19th April, 2024</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/WIQwPBZOkr.pdf">Major relief to Kashmiri migrant voters; ECI abolishes cumbersome procedure of Form-M for migrants residing at Jammu and Udhampur</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/8kQueqNVAk.pdf">ECI walks the extra mile to reach at the doorstep of elderly and PwD voters</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/PPLFnkuhX5.pdf">Election Commission's Notification under Section 30 and 56 of the Representation of the People Act, 1951 for 29-Betul(ST) PC of Madhya Pradesh</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/ulgdPeO4wU.pdf">Election Commission's Notification under Section 30 and 56 of Representation of the People Act, 1951 for the General Election to House of the People, 2024 for Phase 3</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/OZoTmlZhX6.pdf">Gazette notification for Phase 3 of General Elections to Lok Sabha 2024 to be issued on April 12, 2024</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/f4N7oAVzK0.pdf">ECI cracks down on anonymous political hoardings; directs disclosure of publishers and printers for traceability and accountability</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/svts6VFTET.pdf">General Election to Lok Sabha and Legislative Assemblies of Andhra Pradesh, Arunachal Pradesh, Odisha and Sikkim, 2024 - Restriction on printing of pamphlets, posters etc.
+        </a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/w758ptfEdU.pdf">General Election to Lok Sabha, 2024 - Schedule for Conduct of Poll in 29-Betul (ST) Parliamentary Constituency of Madhya Pradesh adjourned due to death of contesting candidate of Bahujan Samaj Party, a recognised National Party</a>
+      </div>
+      <div class="link-item">
+        <a href="https://elections24.eci.gov.in/docs/iQueu1Ests.pdf">Commission's letter to Shri Mallikarjun Kharge, President, Indian National Congress regarding violation of Model Code of Conduct</a>
+      </div>
+
+      <!-- Add more links as needed -->
+    </div>
+  </div>
+  <script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const popup = document.getElementById('popup');
+    const closeBtn = document.querySelector('.close');
+    const infoForm = document.getElementById('infoForm');
+
+    searchBtn.addEventListener('click', function() {
+        popup.style.display = 'block';
+    });
+
+    closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+
+    infoForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        // Add your form submission logic here
+        // For example, you can collect form data and perform further actions
+        console.log('Form submitted!');
+        popup.style.display = 'none'; // Hide the popup after form submission
+    });
+});
+
+  </script>
+</body>
+</html>
