@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="ONLINE VOTING SYSTEM (2).png" >
+  <title>SVEEP</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --bg: #fef5b9;
+    --box: #fced97;
+    --light: #fffbaf;
+    --dark: #825a48;
+    --body: #251418;
+    --alt: #918d61;
+}
+    
+    body {
+                margin: 0;
+                padding: 0 0 20px 0;
+                position: relative;
+                background: var(--bg);
+                color: var(--body);
+                width: 100%;
+                min-height: 100vh;
+                font-family: 'Sometype Mono', monospace;
+                background-image: url("https://assets.codepen.io/5896374/seamless-yellow-carpet.jpg");
+                overflow-x: hidden;
+                transition: all 0.3s steps(3);
+            }
+
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: black;
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: inherit;
+            }
+
+            body.toggled::before {
+                opacity: 0.5;
+                mix-blend-mode: color-burn;
+            }
+    nav {
+                width: 100%;
+                border-top: 2px solid;
+                margin-bottom: 20px;
+                border-bottom: 2px solid;
+                text-align: center;
+                background: var(--light);
+                position: sticky;
+                top: 0;
+                z-index: 9;
+            }
+
+            nav::before {
+                content: "";
+                box-shadow: 5px 5px 3px inset rgba(255, 255, 255, 0.65),
+                    5px 10px 10px 5px inset var(--light), -6px -6px 1px inset var(--dark),
+                    3px 3px 0 rgba(0, 0, 0, 0.1), 5px 5px 0 rgba(0, 0, 0, 0.1),
+                    7px 7px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 0;
+                left: -20px;
+                width: calc(100% + 40px);
+                height: 100%;
+                z-index: -1;
+                pointer-events: none;
+            }
+
+            .nav-wrap {
+                display: flex;
+                width: calc(100% - 20px);
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            nav a {
+                padding: 10px;
+                flex-grow: 1;
+                color: inherit;
+                text-transform: uppercase;
+                font-weight: bold;
+                text-decoration: none;
+                border-right: 2px solid;
+                transition: all 0.15s steps(2);
+            }
+
+            nav a:first-of-type {
+                border-left: 2px solid;
+            }
+
+            nav a:focus,
+            nav a:hover {
+                background: var(--light);
+                box-shadow: -2px -2px 2px 2px inset rgba(255, 255, 255, 0.5),
+                    2px 2px 1px 2px inset var(--dark);
+            }
+
+            nav a:focus {
+                filter: brightness(0.9);
+            }
+
+    /* Grid layout styles */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 20px;
+      margin: 20px;
+    }
+
+    .content {
+      grid-column: span 2;
+    }
+
+    /* Additional styles */
+    h1 {
+      text-align: center;
+      animation: scaleIn 0.5s ease-out;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    .fakeimg {
+  background-color:var(--box);
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+/* Footer */
+.footer {
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  background: var(--body);
+  border-radius: 20px;
+  color: #fef5b9;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+
+    /* Style for grid layout */
+    .link-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    .link-item {
+      background-color: var(--body);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    /* Keyframe animations */
+    @keyframes scaleIn {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrap">
+      <img src="ONLINE VOTING SYSTEM (2).png" alt="Icon" width="100" height="40">
+      <a href="home.html" target="_blank">Home</a>
+      <a href="about-us.html" target="_blank">About Us</a>
+      <a href="services.html" target="_blank">Services</a>
+      <a href="updates.html" target="_blank">Updates</a>
+    </div>
+  </nav>
+  <h1>SVEEP</h1>
+  <div class="container">
+    <div class="content">
+      <p>
+        Systematic Voters’ Education and Electoral Participation (SVEEP) is a comprehensive program designed to enhance voter education and awareness among the populace.<br> It encompasses various initiatives and strategies to encourage citizens to participate actively in the electoral process and make informed decisions during elections.<br><br><br><br><br>
+
+One of the key features of SVEEP is its focus on disseminating accurate and unbiased information about the electoral system, voting procedures, and the importance of voting<br> in a democracy. Through campaigns, workshops, seminars, and educational materials, SVEEP aims to empower voters with knowledge about their rights and responsibilities, thereby fostering a<br> culture of electoral participation.<br><br><br><br>
+
+Advantages of the SVEEP program include:<br><br><br><br><br>
+
+<strong>Voter Turnout:<br></strong> By educating citizens about the electoral process and the significance of their vote, SVEEP contributes to<br> higher voter turnout during elections. This leads to a more representative and democratic election outcome.<br><br><br><br>
+<strong>Informed Decision-Making:<br></strong> SVEEP equips voters with the necessary information to make informed choices while casting their votes. This reduces the <br>influence of misinformation and promotes a more informed electorate.<br><br><br><br><br>
+<strong>Empowerment of Marginalized Groups: <br><br></strong> often targets marginalized and underrepresented communities, empowering them to exercise<br> their voting rights and participate actively in democratic processes.<br><br><br><br><br>
+<strong>Enhanced Civic Engagement:<br><br></strong> Through interactive activities and awareness campaigns, SVEEP encourages citizens to engage in discussions <br>about electoral issues, governance, and civic responsibilities, fostering a sense of civic duty and engagement.<br><br><br><br><br>
+<strong>Promotion of Electoral Integrity:<br><br></strong> By promoting ethical and fair electoral practices, SVEEP contributes to upholding the integrity of the <br>electoral process and building trust in democratic institutions.<br><br><br><br><br>
+Overall, the SVEEP program plays a crucial role in strengthening democratic values, promoting civic engagement, and ensuring a vibrant and inclusive electoral democracy.
+      </p>
+      <p>
+        SVEEP initiatives include voter registration drives, voter education campaigns, and outreach programs to encourage voter participation.
+      </p>
+    </div>
+  </div>
+  <div class="footer">
+    <h2>Footer</h2>
+    <div>
+      <!-- Address -->
+      8th kilometer, Milestone Delhi, Meerut Rd, Jalalabad 0069 Morta, Ghaziabad, Uttar Pradesh 201003
+    </div>
+    <div>
+      <!-- Quick Links -->
+      <ul class="link-list">
+        <li class="link-item"><a href="about us.html">About OVC</a></li>
+        <li class="link-item"><a href="officers-directory.html">Officers Directory</a></li>
+        <li class="link-item"><a href="contect us.html">Contact Us</a></li>
+        <li class="link-item"><a href="public-grievance.html">Public Grievance</a></li>
+        <li class="link-item"><a href="RTI Onlin.html">RTI Online</a></li>
+        <li class="link-item"><a href="eoffice.html">eOffice</a></li>
+        <li class="link-item"><a href="Apply for Voter Card.html">Apply for Voter Card</a></li>
+        <li class="link-item"><a href="sveep.html">SVEEP</a></li>
+        <li class="link-item"><a href="service voter portal.html">Service Voter Portal</a></li>
+       
+        <li class="link-item"><a href="Political Parties.html">Political Parties</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
