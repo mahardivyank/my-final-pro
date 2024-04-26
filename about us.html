@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="ONLINE VOTING SYSTEM (2).png" >
+  <title>About Us </title>
+  
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --bg: #fef5b9;
+    --box: #fced97;
+    --light: #fffbaf;
+    --dark: #825a48;
+    --body: #251418;
+    --alt: #918d61;
+}
+    
+    body {
+                margin: 0;
+                padding: 0 0 20px 0;
+                position: relative;
+                background: var(--bg);
+                color: var(--body);
+                width: 100%;
+                min-height: 100vh;
+                font-family: 'Sometype Mono', monospace;
+                background-image: url("https://assets.codepen.io/5896374/seamless-yellow-carpet.jpg");
+                overflow-x: hidden;
+                transition: all 0.3s steps(3);
+            }
+
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: black;
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: inherit;
+            }
+
+            body.toggled::before {
+                opacity: 0.5;
+                mix-blend-mode: color-burn;
+            }
+header {
+  color: black;
+  padding: 10px 0;
+  text-align: center;
+}
+nav {
+                width: 100%;
+                border-top: 2px solid;
+                margin-bottom: 20px;
+                border-bottom: 2px solid;
+                text-align: center;
+                background: var(--light);
+                position: sticky;
+                top: 0;
+                z-index: 9;
+            }
+
+            nav::before {
+                content: "";
+                box-shadow: 5px 5px 3px inset rgba(255, 255, 255, 0.65),
+                    5px 10px 10px 5px inset var(--light), -6px -6px 1px inset var(--dark),
+                    3px 3px 0 rgba(0, 0, 0, 0.1), 5px 5px 0 rgba(0, 0, 0, 0.1),
+                    7px 7px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 0;
+                left: -20px;
+                width: calc(100% + 40px);
+                height: 100%;
+                z-index: -1;
+                pointer-events: none;
+            }
+
+            .nav-wrap {
+                display: flex;
+                width: calc(100% - 20px);
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            nav a {
+                padding: 10px;
+                flex-grow: 1;
+                color: inherit;
+                text-transform: uppercase;
+                font-weight: bold;
+                text-decoration: none;
+                border-right: 2px solid;
+                transition: all 0.15s steps(2);
+            }
+
+            nav a:first-of-type {
+                border-left: 2px solid;
+            }
+
+            nav a:focus,
+            nav a:hover {
+                background: var(--light);
+                box-shadow: -2px -2px 2px 2px inset rgba(255, 255, 255, 0.5),
+                    2px 2px 1px 2px inset var(--dark);
+            }
+
+            nav a:focus {
+                filter: brightness(0.9);
+            }
+            #searchBtn {
+    position: fixed;
+    top: 60px; /* Adjust the value to position the button lower */
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #030227; /* Blue color, you can change it */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#searchBtn:hover {
+    background-color: #030227; /* Darker shade of blue on hover */
+}
+            .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fef5b9;
+    background-color: var(--body);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.popup-content button[type="submit"] {
+    background-color: var(--dark); /* Coral color, you can change it */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-content button[type="submit"]:hover {
+    background-color: var(--dark); /* Darker shade of coral on hover */
+}
+
+h1 {
+  margin: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: var(--bg);
+  font-family: 'Sometype Mono', monospace;
+}
+p{
+  font-family: 'Sometype Mono', monospace;
+}
+
+#mission-statement {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Column container */
+.row {  
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  border-radius: 20px;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 30%; /* IE10 */
+  flex: 30%;
+  background-color: var(--dark);
+  padding: 20px;
+  border-radius: 20px;
+}
+.main {   
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: rgb(15, 31, 44);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+
+.fakeimg {
+  background-color:var(--box);
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+/* Footer */
+.footer {
+  color: #fffbaf;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  background: var(--body);
+  border-radius: 20px;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+
+    /* Style for grid layout */
+    .link-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    .link-item {
+      background-color: var(--body);
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+
+
+  </style>
+   <nav>
+    <div class="nav-wrap">
+      <img src="ONLINE VOTING SYSTEM (2).png" alt="Icon" width="100" height="40">
+        <a href="home.html" target="_blank">Home</a>
+        <a href="about us.html" target="_blank">About Us</a>
+        <a href="services.html" target="_blank">Services</a>
+        <a href="updates.html" target="_blank">updates</a>
+
+    </div>
+</nav>
+<button id="searchBtn">Search</button>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Fill in Information</h2>
+            <form id="infoForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+  </div>
+</head>
+<body>
+  <header>
+    <h1>About Us</h1>
+  </header>
+    <section id="mission-section">
+      <h2 style="color: black;">Our Mission</h2>
+      <p id="mission-statement">Empowering democratic participation through secure and accessible online voting.</p>
+      
+    </section>
+  
+  <div class="row">
+    <div class="side">
+      <h2>About Us</h2>
+      <h5>Photo of us:</h5>
+      <div class="fakeimg" style="height:200px; width: 320px; border-radius: 10px;"><a href="ONLINE VOTING SYSTEM (2).png">
+        <img src="ONLINE VOTING SYSTEM (2).png" alt="Description of the image"  style="border-radius: 10px;" height="200" width="320">
+    </a></div>
+        
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+      <h3>More Text</h3>
+      <p>Lorem ipsum dolor sit ame.</p>
+      <div class="fakeimg" style="height:60px;"><li><strong><span style="font-size: 18px;"></span>Registration and Authentication:</strong> Voters<span style="font-size: 10px;"></span> register and authenticate their identity to ensure eligibility.</li></div><br>
+      <div class="fakeimg" style="height:60px;">Image</div><br>
+      <div class="fakeimg" style="height:60px;">Image</div>
+    </div>
+    <div class="main">
+      <h2>ONLINE VOTTING SYSTEM</h2>
+      <h5 style="color: #fef5b9;">Title description, 2024</h5>
+      <div class="fakeimg" style="height:200px;"> <p>An online voting system is a digital platform designed to facilitate the voting process, allowing eligible voters to cast their votes electronically over the internet. It includes several key components:</p>
+        <ul>
+            
+           <li><strong>Vote Counting:</strong> The system automatically tallies votes and generates results.</li>
+            
+        </ul>
+        <p>While online voting systems offer convenience and efficiency, they also face challenges related to security, privacy, and ensuring a fair and transparent voting process.</p></div>
+      <p style="color: #fef5b9;">Some text..</p>
+      <p style="color: #fef5b9;">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <br>
+      <h2>TITLE HEADING</h2>
+      <h5 style="color: #fef5b9;">Title description, Sep 2, 2017</h5>
+      <div class="fakeimg" style="height:200px; width: 800px;" ><video style="width: 800px; height: 200px; border-radius: 20px; " controls>
+        <source src="ONLINE VOTING SYSTEM VID.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video></div>
+      <p style="color: #fef5b9;">Some text..</p>
+      <p style="color: #fef5b9;">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <h2>Footer</h2>
+    <div>
+      <!-- Address -->
+      8th kilometer, Milestone Delhi, Meerut Rd, Jalalabad 0069 Morta, Ghaziabad, Uttar Pradesh 201003
+    </div>
+    <div>
+      <!-- Quick Links -->
+      <ul class="link-list">
+        <li class="link-item"><a href="about us.html">About OVC</a></li>
+        <li class="link-item"><a href="officers-directory.html">Officers Directory</a></li>
+        <li class="link-item"><a href="contect us.html">Contact Us</a></li>
+        <li class="link-item"><a href="public-grievance.html">Public Grievance</a></li>
+        <li class="link-item"><a href="RTI Onlin.html">RTI Online</a></li>
+        <li class="link-item"><a href="eoffice.html">eOffice</a></li>
+        <li class="link-item"><a href="Apply for Voter Card.html">Apply for Voter Card</a></li>
+        <li class="link-item"><a href="sveep.html">SVEEP</a></li>
+        <li class="link-item"><a href="service voter portal.html">Service Voter Portal</a></li>
+        <li class="link-item"><a href="Political Parties.html">Political Parties</a></li>
+      </ul>
+    </div>
+  </div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const popup = document.getElementById('popup');
+    const closeBtn = document.querySelector('.close');
+    const infoForm = document.getElementById('infoForm');
+
+    searchBtn.addEventListener('click', function() {
+        popup.style.display = 'block';
+    });
+
+    closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+
+    infoForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        // Add your form submission logic here
+        // For example, you can collect form data and perform further actions
+        console.log('Form submitted!');
+        popup.style.display = 'none'; // Hide the popup after form submission
+    });
+});
+  </script>
+</body>
+</html>
