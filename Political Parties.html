@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="ONLINE VOTING SYSTEM (2).png" >
+    <title>Political Parties</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --bg: #fef5b9;
+    --box: #fced97;
+    --light: #fffbaf;
+    --dark: #825a48;
+    --body: #251418;
+    --alt: #918d61;
+}
+        /* Additional styles for the Political Parties page */
+
+        body {
+            margin: 0;
+            padding: 0 0 20px 0;
+            position: relative;
+            background: var(--bg);
+            color: var(--body);
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Sometype Mono', monospace;
+            background-image: url("https://assets.codepen.io/5896374/seamless-yellow-carpet.jpg");
+            overflow-x: hidden;
+            transition: all 0.3s steps(3);
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: inherit;
+        }
+
+        body.toggled::before {
+            opacity: 0.5;
+            mix-blend-mode: color-burn;
+        }
+
+        nav {
+            width: 100%;
+            border-top: 2px solid;
+            margin-bottom: 20px;
+            border-bottom: 2px solid;
+            text-align: center;
+            background: var(--light);
+            position: sticky;
+            top: 0;
+            z-index: 9;
+        }
+
+        nav::before {
+            content: "";
+            box-shadow: 5px 5px 3px inset rgba(255, 255, 255, 0.65),
+                5px 10px 10px 5px inset var(--light), -6px -6px 1px inset var(--dark),
+                3px 3px 0 rgba(0, 0, 0, 0.1), 5px 5px 0 rgba(0, 0, 0, 0.1),
+                7px 7px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 0;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .nav-wrap {
+            display: flex;
+            width: calc(100% - 20px);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            padding: 10px;
+            flex-grow: 1;
+            color: inherit;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            border-right: 2px solid;
+            transition: all 0.15s steps(2);
+        }
+
+        nav a:first-of-type {
+            border-left: 2px solid;
+        }
+
+        nav a:focus,
+        nav a:hover {
+            background: var(--light);
+            box-shadow: -2px -2px 2px 2px inset rgba(255, 255, 255, 0.5),
+                2px 2px 1px 2px inset var(--dark);
+        }
+
+        nav a:focus {
+            filter: brightness(0.9);
+        }
+.active {
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+.party-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Each party card takes up one full row */
+    grid-gap: 20px;
+}
+
+.party-card {
+    background: linear-gradient(160deg,#825a48 35%, #825a48 40%,  #825a48 60%, #825a48 65%);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.party-card h2 {
+    margin-bottom: 10px;
+}
+.button {
+                background: rgb(18, 18, 83);
+                max-width: max-content;
+                display: inline-block;
+                font-weight: bold;
+                border: 1px solid transparent;
+                color: var(--light);
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                padding: 0.5em 1em;
+                border-radius: 3px;
+                box-shadow: 0.2em 0.2em 0.2em 0.1em inset var(--dark), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.25);
+                transition: all 0.2s steps(2);
+            }
+
+            .button:hover {
+                color: var(--bg);
+                background: var(--dark);
+                box-shadow: -0.2em -0.2em 0.2em 0.1em inset var(--body), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.25);
+            }
+
+            .button:focus {
+                background: var(--dark);
+                box-shadow: 0.2em 0.2em 0.2em 0.1em inset var(--body);
+            }
+
+            .button.alt {
+                background: var(--bg);
+                color: var(--body);
+                box-shadow: 0em 0em 0em 0.1em inset rgba(0, 0, 0, 0), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.25);
+                border-color: currentcolor;
+            }
+
+            .button.alt:hover {
+                background: var(--light);
+            }
+
+            .button.alt:focus {
+                box-shadow: 0.2em 0.2em 0.2em 0.1em inset rgba(0, 0, 0, 0.25);
+            } 
+.footer {
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  background: var(--body);
+  border-radius: 20px;
+  color: #fef5b9;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+
+    /* Style for grid layout */
+    .link-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    .link-item {
+      background-color: var(--body);
+      padding: 10px;
+      border-radius: 5px;
+    }
+    </style>
+<body>
+    <nav>
+        <div class="nav-wrap">
+            <img src="ONLINE VOTING SYSTEM (2).png" alt="Icon" width="100" height="40">
+            <a href="home.html">Home</a>
+            <a href="about us.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="updates.html">Updates</a>
+            
+        </div>
+    </nav>
+    <header>
+        <h1>Political Parties</h1>
+    </header>
+    
+    
+    <main>
+        <!-- Content for Political Parties page goes here -->
+        <section class="party-grid">
+            <div class="party-card">
+                <h2>BJP(Bhartiya Janta party)</h2>
+                <p<p>
+                    <strong>The Bharatiya Janata Party (BJP)</strong> is one of <strong>India's major political parties</strong>. Here are some important points about the BJP:
+                </p>
+                
+                <ul>
+                    <li><strong>Formation:</strong> The BJP was established on April 6, 1980, following the merger of several political parties, including the Bharatiya Jana Sangh and various Janata factions.</li>
+                    <li><strong>Ideology:</strong> It is generally considered a right-wing party with roots in Hindu nationalism and cultural conservatism. The party advocates for Hindutva, which seeks to promote Hindu values and culture.</li>
+                    <li><strong>Leadership:</strong> Over the years, the BJP has had several prominent leaders. Some of the key figures include Atal Bihari Vajpayee, L.K. Advani, Narendra Modi, Amit Shah, and Rajnath Singh.</li>
+                    <li><strong>Electoral Success:</strong> The BJP has experienced significant electoral success, especially in recent years. It has formed governments at both the national level and in several states across India.</li>
+                    <li><strong>National Policies:</strong> The party's policies often focus on economic development, national security, infrastructure, social welfare, and cultural identity. Initiatives such as "Make in India," "Swachh Bharat Abhiyan," and "Digital India" are associated with the BJP-led governments.</li>
+                    <li><strong>Majority Government:</strong> In 2014, the BJP won a landslide victory in the general elections, securing a majority on its own in the Lok Sabha (lower house of Parliament) for the first time. The party repeated this feat in the 2019 elections.</li>
+                    <li><strong>Criticism and Controversies:</strong> The BJP has faced criticism and controversies related to issues such as religious and social tensions, freedom of expression, handling of economic policies, and human rights concerns.</li>
+                    <li><strong>Coalition Politics:</strong> While the BJP has often led majority governments, it has also been part of coalition governments, especially in the earlier years of its formation.</li>
+                    <li><strong>Digital Presence:</strong> The BJP has been active in utilizing digital platforms for political campaigns, communication, and outreach, leveraging social media and technology to connect with voters.</li>
+                    <li><strong>Global Engagement:</strong> The party has engaged in diplomatic efforts and international relations, particularly focusing on strengthening ties with other countries, promoting trade and investment, and addressing global challenges.</li>
+                </ul>
+                <a href="https://www.bjp.org/home" target="_blank" class="button">Learn More</a>
+                </p>
+            </div>
+            <div class="party-card">
+                <h2>INC(Indian National Congress)</h2>
+                <p><p>
+                    <strong>The Indian National Congress</strong> is one of <strong>India's oldest political parties</strong>. Here are some important points about the Congress Party:
+                </p>
+                
+                <ul>
+                    <li><strong>Formation:</strong> The Indian National Congress was founded on December 28, 1885, during British rule in India. It played a crucial role in India's independence movement.</li>
+                    <li><strong>Ideology:</strong> The Congress Party is often described as a centrist to center-left party with a focus on secularism, social justice, and inclusive development. It has historically advocated for pluralism and diversity.</li>
+                    <li><strong>Leadership:</strong> The party has been led by various prominent figures throughout its history, including Jawaharlal Nehru, Indira Gandhi, Rajiv Gandhi, Sonia Gandhi, and Rahul Gandhi.</li>
+                    <li><strong>Electoral Success:</strong> The Congress Party has been a major force in Indian politics, forming governments at the national level and in several states. It has been part of coalitions as well as leading single-party governments.</li>
+                    <li><strong>National Policies:</strong> The party's policies have focused on economic reforms, social welfare programs, rural development, education, and healthcare. Initiatives such as the National Rural Employment Guarantee Act (NREGA) and Right to Information (RTI) are associated with Congress-led governments.</li>
+                    <li><strong>Criticism and Controversies:</strong> Like any major political party, the Congress Party has faced criticism and controversies over various issues, including governance, corruption allegations, policy decisions, and electoral strategies.</li>
+                    <li><strong>Coalition Politics:</strong> The Congress Party has been involved in coalition politics, forming alliances with regional parties and other political groups to govern at the center and in states.</li>
+                    <li><strong>Digital Presence:</strong> In recent years, the party has focused on enhancing its digital presence, utilizing social media platforms and digital communication tools for political campaigns and engagement with the public.</li>
+                    <li><strong>Global Engagement:</strong> The Congress Party has engaged in international relations and diplomacy, maintaining relationships with other countries, participating in global forums, and addressing global issues.</li>
+                </ul>
+                <a href="https://www.inc.in/" target="_blank" class="button">Learn More</a>
+                </p>
+            </div>
+            <div class="party-card">
+                <h2>AAP(Aam Aadmi Party)</h2>
+                <p<p>
+                    <strong>The Aam Aadmi Party (AAP)</strong> is a relatively new political party in India. Here are some important points about AAP:
+                </p>
+                <ul>
+                    <li><strong>Formation:</strong> AAP was officially launched on November 26, 2012, with a focus on anti-corruption and common citizen issues.</li>
+                    <li><strong>Ideology:</strong> The party emphasizes participatory democracy, transparency, and accountability in governance.</li>
+                    <li><strong>Leadership:</strong> Key figures in AAP include Arvind Kejriwal, Manish Sisodia, and other activists and leaders from various backgrounds.</li>
+                    <li><strong>Electoral Success:</strong> AAP gained prominence by winning the Delhi Legislative Assembly elections and forming the government in Delhi multiple times.</li>
+                    <li><strong>National Presence:</strong> While initially focused on Delhi, AAP has expanded its presence and contested elections in other states as well.</li>
+                    <li><strong>Policies:</strong> The party's policies include initiatives for education, healthcare, water, electricity, and governance reforms.</li>
+                    <li><strong>Challenges:</strong> AAP has faced challenges related to governance, political alliances, and ideological differences.</li>
+                    <li><strong>Public Perception:</strong> The party is often viewed as a proponent of clean politics and alternative governance models.</li>
+                </ul>
+                <a href="https://aamaadmiparty.org/" target="_blank" class="button">Learn More</a>
+            </p>
+            </div>
+            <div class="party-card">
+                <h2>Communist Party of India (CPI) and Communist Party of India
+                    (Marxist)
+                    (CPI(M))</h2>
+                <p><p>
+                    <strong>The Communist Party of India (CPI)</strong> is one of the oldest political parties in India. Here are some important points about CPI:
+                </p>
+                <ul>
+                    <li><strong>Formation:</strong> CPI was founded on December 26, 1925, following the Bolshevik Revolution in Russia.</li>
+                    <li><strong>Ideology:</strong> The party follows Marxist-Leninist ideologies, advocating for socialism, workers' rights, and social equality.</li>
+                    <li><strong>Leadership:</strong> CPI has been led by various leaders over the years, including A.K. Gopalan, C. Rajeswara Rao, and D. Raja.</li>
+                    <li><strong>Electoral Participation:</strong> The party has participated in elections at the national and state levels, often in alliances with other left-wing parties.</li>
+                    <li><strong>Social Movements:</strong> CPI has been involved in various social movements and struggles for workers' rights, land reforms, and social justice.</li>
+                    <li><strong>Political Stance:</strong> CPI has been critical of capitalist policies and globalization, advocating for pro-people policies and economic reforms.</li>
+                    <li><strong>International Relations:</strong> The party has maintained relations with communist parties and socialist movements globally.</li>
+                </ul>
+                </p>
+                <p>
+                    <strong>The Communist Party of India (Marxist) (CPI(M))</strong> is a major left-wing political party in India. Here are some important points about CPI(M):
+                </p>
+                <ul>
+                    <li><strong>Formation:</strong> CPI(M) was formed on October 17, 1964, following a split from the Communist Party of India (CPI).</li>
+                    <li><strong>Ideology:</strong> The party follows Marxist ideologies, advocating for socialism, secularism, and anti-imperialism.</li>
+                    <li><strong>Leadership:</strong> CPI(M) has been led by leaders such as E.M.S. Namboodiripad, Jyoti Basu, Prakash Karat, and Sitaram Yechury.</li>
+                    <li><strong>Electoral Presence:</strong> The party has participated in elections across India, especially in states like West Bengal, Kerala, and Tripura.</li>
+                    <li><strong>Governance:</strong> CPI(M) has experience in governing states and has implemented policies focused on land reforms, social welfare, and agricultural development.</li>
+                    <li><strong>Coalition Politics:</strong> The party has been part of left-wing coalitions and fronts, working with other progressive parties on common agendas.</li>
+                    <li><strong>Public Perception:</strong> CPI(M) is often seen as a defender of workers' rights, secularism, and social justice.</li>
+                </ul>
+                <a href="https://en.wikipedia.org/wiki/Communist_Party_of_India_(Marxist)#:~:text=The%20Communist%20Party%20of%20India,the%20national%20parties%20of%20India." target="_blank" class="button">Learn More</a>
+            </p>
+            </div>
+            <div class="party-card">
+                <h2>BSP(Bahujan Samaj Party )</h2>
+                <p><p>
+                    <strong>The Bahujan Samaj Party (BSP)</strong> is a political party in India that primarily represents Bahujans, including Scheduled Castes, Scheduled Tribes, and Other Backward Classes. Here are some important points about BSP:
+                </p>
+                <ul>
+                    <li><strong>Formation:</strong> BSP was founded by Kanshi Ram in 1984, with a focus on social justice and empowerment of marginalized communities.</li>
+                    <li><strong>Ideology:</strong> The party's ideology revolves around Ambedkarism, advocating for equality, social harmony, and empowerment through education and representation.</li>
+                    <li><strong>Leadership:</strong> Key leaders of BSP include Kanshi Ram, Mayawati, and other leaders representing marginalized communities.</li>
+                    <li><strong>Electoral Strategy:</strong> BSP has contested elections in various states, especially in Uttar Pradesh, and has formed governments in the past.</li>
+                    <li><strong>Social Justice:</strong> The party's policies focus on affirmative action, reservations, and welfare programs for marginalized sections of society.</li>
+                    <li><strong>Political Alliances:</strong> BSP has been part of political alliances and fronts, collaborating with other parties on issues related to social justice and minority rights.</li>
+                    <li><strong>Challenges:</strong> BSP has faced challenges related to electoral strategies, coalition politics, and maintaining its support base.</li>
+                    <li><strong>Empowerment:</strong> The party aims to empower Bahujans and marginalized communities through political representation and socio-economic initiatives.</li>
+                </ul><a href="https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B9%E0%A5%81%E0%A4%9C%E0%A4%A8_%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9C_%E0%A4%AA%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%9F%E0%A5%80" target="_blank" class="button">Learn More</a></p>
+            </div>
+            <div class="party-card">
+                <h2>(SP)Samajwadi Party </h2>
+                <p><p>
+                    <strong>The Samajwadi Party (SP)</strong> is a political party in India with a focus on social justice, secularism, and socialist ideals. Here are some important points about SP:
+                </p>
+                <ul>
+                    <li><strong>Formation:</strong> SP was founded in 1992 by Mulayam Singh Yadav, with roots in socialist movements and regional politics.</li>
+                    <li><strong>Ideology:</strong> The party's ideology includes secularism, socialism, and policies aimed at upliftment of backward classes, farmers, and youth.</li>
+                    <li><strong>Leadership:</strong> SP has been led by leaders such as Mulayam Singh Yadav, Akhilesh Yadav, and others from the Yadav family.</li>
+                    <li><strong>Electoral Presence:</strong> The party has contested elections primarily in Uttar Pradesh and has formed governments in the state.</li>
+                    <li><strong>Policy Focus:</strong> SP's policies focus on agriculture, rural development, education, healthcare, and social welfare.</li>
+                    <li><strong>Regional Influence:</strong> SP has a significant influence in Uttar Pradesh politics and has been part of coalition governments at the national level.</li>
+                    <li><strong>Challenges:</strong> The party has faced challenges related to intra-party conflicts, electoral strategies, and changing political landscapes.</li>
+                    <li><strong>Public Support:</strong> SP has garnered support from various sections of society, especially in rural and semi-urban areas.</li>
+                </ul><a href="https://www.samajwadiparty.in/" target="_blank" class="button">Learn More</a></p>
+            </div>
+            <div class="party-card">
+                <h2>NCP(Nationalist Congress Party )</h2>
+                <p><p>
+                    <strong>The Nationalist Congress Party (NCP)</strong> is a political party in India formed by Sharad Pawar and others. Here are some important points about NCP:
+                </p>
+                <ul>
+                    <li><strong>Formation:</strong> NCP was founded in 1999, following a split from the Indian National Congress.</li>
+                    <li><strong>Ideology:</strong> The party's ideology includes secularism, federalism, and policies aimed at rural development, agriculture, and social justice.</li>
+                    <li><strong>Leadership:</strong> NCP is led by Sharad Pawar, a veteran politician with experience in state and national politics.</li>
+                    <li><strong>Electoral Participation:</strong> The party has contested elections in Maharashtra and other states, often in alliances with other parties.</li>
+                    <li><strong>Policy Focus:</strong> NCP's policies focus on issues such as farmer welfare, employment generation, infrastructure development, and regional autonomy.</li>
+                    <li><strong>Coalition Politics:</strong> NCP has been part of coalition governments at the national level and in Maharashtra.</li>
+                    <li><strong>Challenges:</strong> The party has faced challenges related to factionalism, electoral alliances, and adapting to changing political dynamics.</li>
+                    <li><strong>Regional Influence:</strong> NCP has a significant presence in Maharashtra politics and has contributed to state-level governance.</li>
+                </ul><a href="https://en.wikipedia.org/wiki/Nationalist_Congress_Party" target="_blank" class="button">Learn More</a></p>
+            </div>
+            <div class="party-card">
+                <h2>AITC(All India Trinamool Congress )</h2>
+                <p><p>
+                    <strong>The All India Trinamool Congress (AITC)</strong> is a political party in India, primarily active in West Bengal. Here are some important points about AITC:
+                </p>
+                <ul>
+                    <li><strong>Formation:</strong> AITC was founded on January 1, 1998, by Mamata Banerjee, with a focus on regional issues and governance.</li>
+                    <li><strong>Ideology:</strong> The party's ideology includes regional autonomy, social welfare, secularism, and cultural preservation.</li>
+                    <li><strong>Leadership:</strong> AITC is led by Mamata Banerjee, a prominent leader known for her grassroots politics and advocacy.</li>
+                    <li><strong>Electoral Success:</strong> The party has won elections in West Bengal and has formed the government multiple times in the state.</li>
+                    <li><strong>Policy Initiatives:</strong> AITC's policies focus on rural development, employment generation, women's empowerment, and inclusive growth.</li>
+                    <li><strong>Regional Influence:</strong> AITC has a strong presence in West Bengal and has expanded its reach to other states as well.</li>
+                    <li><strong>Coalition Dynamics:</strong> The party has been involved in coalition politics at the national level and has collaborated with other regional parties.</li>
+                    <li><strong>Challenges:</strong> AITC has faced challenges related to governance, political opposition, and managing diverse interests within the party.</li>
+                </ul><a href="https://aitcofficial.org/" target="_blank" class="button">Learn More</a></p>
+            </div>
+            <!-- Add more party cards as needed -->
+        </section>
+    </main>
+    <h2>Footer</h2>
+    <div>
+      <!-- Address -->
+      8th kilometer, Milestone Delhi, Meerut Rd, Jalalabad 0069 Morta, Ghaziabad, Uttar Pradesh 201003
+    </div>
+    <div>
+      <!-- Quick Links -->
+      <ul class="link-list">
+        <li class="link-item"><a href="about us.html">About OVC</a></li>
+        <li class="link-item"><a href="officers-directory.html">Officers Directory</a></li>
+        <li class="link-item"><a href="contect us.html">Contact Us</a></li>
+        <li class="link-item"><a href="public-grievance.html">Public Grievance</a></li>
+        <li class="link-item"><a href="RTI Onlin.html">RTI Online</a></li>
+        <li class="link-item"><a href="eoffice.html">eOffice</a></li>
+        <li class="link-item"><a href="Apply for Voter Card.html">Apply for Voter Card</a></li>
+        <li class="link-item"><a href="sveep.html">SVEEP</a></li>
+        <li class="link-item"><a href="service voter portal.html">Service Voter Portal</a></li>
+        
+        <li class="link-item"><a href="Political Parties.html">Political Parties</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

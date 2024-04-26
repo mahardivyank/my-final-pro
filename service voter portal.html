@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="ONLINE VOTING SYSTEM (2).png">
+  <title>Service Voter Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Grid layout styles */
+    @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    :root {
+      --bg: #fef5b9;
+      --box: #fced97;
+      --light: #fffbaf;
+      --dark: #825a48;
+      --body: #251418;
+      --alt: #918d61;
+    }
+
+    body {
+      margin: 0;
+      padding: 0 0 20px 0;
+      position: relative;
+      background: var(--bg);
+      color: var(--body);
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Sometype Mono', monospace;
+      background-image: url("https://assets.codepen.io/5896374/seamless-yellow-carpet.jpg");
+      overflow-x: hidden;
+      transition: all 0.3s steps(3);
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: inherit;
+    }
+
+
+    body.toggled::before {
+      opacity: 0.5;
+      mix-blend-mode: color-burn;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background-color: rgb(54, 25, 82);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-out;
+      margin: 0 auto; /* Center the container horizontally */
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--bg);
+      margin-bottom: 20px;
+      animation: slideInDown 0.5s ease-out;
+    }
+
+    p {
+      color: aquamarine;
+      margin-bottom: 15px;
+      animation: slideInUp 0.5s ease-out;
+    }
+
+    .button {
+      background: var(--body);
+      max-width: max-content;
+      display: inline-block;
+      font-weight: bold;
+      border: 1px solid transparent;
+      color: var(--light);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.5em 1em;
+      border-radius: 3px;
+      box-shadow: 0.2em 0.2em 0.2em 0.1em inset var(--dark), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.25);
+      transition: all 0.2s steps(2);
+    }
+
+    .button:hover {
+      color: var(--bg);
+      background: var(--dark);
+      box-shadow: -0.2em -0.2em 0.2em 0.1em inset var(--body), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.25);
+    }
+
+    .button:focus {
+      background: var(--dark);
+      box-shadow: 0.2em 0.2em 0.2em 0.1em inset var(--body);
+    }
+
+    .button.alt {
+      background: var(--bg);
+      color: var(--body);
+      box-shadow: 0em 0em 0em 0.1em inset rgba(0, 0, 0, 0), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.25);
+      border-color: currentcolor;
+    }
+
+    .button.alt:hover {
+      background: var(--light);
+    }
+
+    .button.alt:focus {
+      box-shadow: 0.2em 0.2em 0.2em 0.1em inset rgba(0, 0, 0, 0.25);
+    }
+
+    
+    /* Keyframe animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Navbar styles */
+    nav {
+      width: 100%;
+      border-top: 2px solid;
+      margin-bottom: 20px;
+      border-bottom: 2px solid;
+      text-align: center;
+      background: var(--light);
+      position: sticky;
+      top: 0;
+      z-index: 9;
+    }
+
+    nav::before {
+      content: "";
+      box-shadow: 5px 5px 3px inset rgba(255, 255, 255, 0.65),
+        5px 10px 10px 5px inset var(--light), -6px -6px 1px inset var(--dark),
+        3px 3px 0 rgba(0, 0, 0, 0.1), 5px 5px 0 rgba(0, 0, 0, 0.1),
+        7px 7px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 0;
+      left: -20px;
+      width: calc(100% + 40px);
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .nav-wrap {
+      display: flex;
+      width: calc(100% - 20px);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    nav a {
+      padding: 10px;
+      flex-grow: 1;
+      color: inherit;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      border-right: 2px solid;
+      transition: all 0.15s steps(2);
+    }
+
+    nav a:first-of-type {
+      border-left: 2px solid;
+    }
+
+    nav a:focus,
+    nav a:hover {
+      background: var(--light);
+      box-shadow: -2px -2px 2px 2px inset rgba(255, 255, 255, 0.5),
+        2px 2px 1px 2px inset var(--dark);
+    }
+
+    nav a:focus {
+      filter: brightness(0.9);
+    }
+
+    /* Footer styles */
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #080808;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    /* Style for grid layout */
+    .link-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    .link-item {
+      background-color: var(--body);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 700px) {
+      .row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrap">
+      <img src="ONLINE VOTING SYSTEM (2).png" alt="Icon" width="100" height="40">
+      <a href="home.html" target="_blank">Home</a>
+      <a href="about-us.html" target="_blank">About Us</a>
+      <a href="services.html" target="_blank">Services</a>
+      <a href="updates.html" target="_blank">Updates</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Service Voter Portal</h1>
+    <div class="content">
+      <p>
+        The Service Voter Portal provides services related to voter registration and election information for service personnel.
+      </p>
+      <p>
+        Service voters can use this portal to register, check their voting status, and access election-related resources.
+      </p>
+      <a href="#" class="button">Access Portal</a>
+    </div>
+  </div>
+  <div class="footer">
+    <h2>Footer</h2>
+    <div>
+      <!-- Address -->
+      8th kilometer, Milestone Delhi, Meerut Rd, Jalalabad 0069 Morta, Ghaziabad, Uttar Pradesh 201003
+    </div>
+    <div>
+      <!-- Quick Links -->
+      <ul class="link-list">
+        <li class="link-item"><a href="about us.html">About OVC</a></li>
+        <li class="link-item"><a href="officers-directory.html">Officers Directory</a></li>
+        <li class="link-item"><a href="contect us.html">Contact Us</a></li>
+        <li class="link-item"><a href="public-grievance.html">Public Grievance</a></li>
+        <li class="link-item"><a href="RTI Onlin.html">RTI Online</a></li>
+        <li class="link-item"><a href="eoffice.html">eOffice</a></li>
+        <li class="link-item"><a href="Apply for Voter Card.html">Apply for Voter Card</a></li>
+        <li class="link-item"><a href="sveep.html">SVEEP</a></li>
+        <li class="link-item"><a href="service voter portal.html">Service Voter Portal</a></li>
+       
+        <li class="link-item"><a href="Political Parties.html">Political Parties</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
